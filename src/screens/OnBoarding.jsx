@@ -8,7 +8,7 @@ import { useFirebase } from './firebaseContext/FirebaseContext';
 export default function OnBoarding({navigation}) {
  
    const {isLogin}=useFirebase();
-
+   console.log(process.env.REACT_APP_API_KEY)
     const handleDone=()=>{
       isLogin ? navigation.navigate("Home"):navigation.navigate("Login") 
 

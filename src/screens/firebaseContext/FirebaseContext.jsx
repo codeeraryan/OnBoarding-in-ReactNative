@@ -1,8 +1,9 @@
 import {initializeApp} from "firebase/app";
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
 import {createContext, useContext, useState} from "react";
+import { REACT_APP_API_KEY } from "../config";
 const firebaseConfig = {
-  apiKey: "AIzaSyDN3beHn93zbjTR4BnrPREGhCb8bljS23I",
+  apiKey:REACT_APP_API_KEY,
   authDomain: "letscookiit.firebaseapp.com",
   projectId: "letscookiit",
   storageBucket: "letscookiit.firebasestorage.app",
