@@ -1,22 +1,20 @@
 import { Text, View,TextInput, TouchableOpacity, Alert ,StyleSheet} from 'react-native'
 import  { Checkbox } from 'expo-checkbox'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useFirebase } from './firebaseContext/FirebaseContext'
  const Login=({navigation})=> {
+  useEffect(()=>{isLogin?navigation.navigate("Home"):null})
+  const {registerUser,loginUser,isLogin,setIsLogin}=useFirebase();
     const [checked,SetChecked]=useState(false)
-  const [login,SetLogin]=useState(false)
   const [email,SetEmail]=useState("")
   const [Pass,SetPass]=useState("")
+  const handleRegister=()=>{
+    registerUser(email,Pass);
+    setIsLogin(true)
+  }
   const handleLogin=()=>{
-    if(email=="aryanpandey0326@gmail.com"&&Pass=="arya2006"){
-      Alert.alert(`user ${email} logged in`)
-      SetLogin(true)
-      navigation.navigate("Home")
-    }
-   else{ 
-    SetLogin(false)
-    Alert.alert("username and password is not correct")
-   }
-    console.log(login)
+    loginUser(email,Pass);
+    setIsLogin(true)
   }
     return (
         <View style={styles.head} >
@@ -35,6 +33,10 @@ import { useState } from 'react'
             <TouchableOpacity disabled={!checked} onPress={()=>handleLogin()} >
               <Text style={{backgroundColor:checked?"#4630eb":"#7D7D7D",paddingVertical:"8",textAlign:"center",width:"100",borderRadius:20,fontSize:20,marginTop:40,color:"white"}} >Login</Text>
             </TouchableOpacity>
+            <TouchableOpacity disabled={!checked} onPress={()=>handleRegister()} >
+              <Text style={{backgroundColor:checked?"#4630eb":"#7D7D7D",paddingVertical:"8",textAlign:"center",width:"100",borderRadius:20,fontSize:20,marginTop:40,color:"white"}} >Register</Text>
+            </TouchableOpacity>
+            
         </View>
       </View>
     )

@@ -4,12 +4,14 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react'
 import Onboarding from 'react-native-onboarding-swiper';
 import LottieView from 'lottie-react-native';
-
+import { useFirebase } from './firebaseContext/FirebaseContext';
 export default function OnBoarding({navigation}) {
-   
+ 
+   const {isLogin}=useFirebase();
 
     const handleDone=()=>{
-        navigation.navigate("Login")
+      isLogin ? navigation.navigate("Home"):navigation.navigate("Login") 
+
     }
   return (
     <View style={styles.container}>
